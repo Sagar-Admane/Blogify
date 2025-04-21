@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('blog_id')->constrained()->onDelete('cascade');
-            $table->boolean('is_like')->default(true); // true for like, false for dislike
+            $table->boolean('is_like')->default(true);
             $table->timestamps();
             
-            // Ensure a user can only like/dislike a blog once
             $table->unique(['user_id', 'blog_id']);
         });
     }
@@ -30,4 +29,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('likes');
     }
-};
+}; 
