@@ -11,11 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $user = Auth::user();
-    if($user->email === 'admin@gmail.com'){
-        return view('admin.dashboard');
-    }
-    return view('user-dashboard');
+    return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -29,6 +25,7 @@ require __DIR__.'/auth.php';
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
@@ -44,3 +41,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+
+// Admin routes
+Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});

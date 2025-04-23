@@ -41,7 +41,7 @@
 
                 <div class="mb-4">
                     <label for="contact_email" class="block text-gray-700 text-sm font-bold mb-2">Contact Email</label>
-                    <input type="email" name="contact_email" id="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? 'admin@blogify.com') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('contact_email') border-red-500 @enderror">
+                    <input type="email" name="contact_email" id="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? 'admin99@gmail.com') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('contact_email') border-red-500 @enderror">
                     @error('contact_email')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
